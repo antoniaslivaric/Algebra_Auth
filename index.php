@@ -2,8 +2,22 @@
 
 	require_once 'core/init.php';
 	
-	$db = DB::getInstance()->query('SELECT * FROM users WHERE username = ?', array('perozder'));
+	$db = DB::getInstance()->update('users', 1, [
+			'username' => 'mirkozlikovski', 
+			'name' => 'Mirko' 
+		]);
 	
+	/*->insert('users', [
+			'username' => 'mirkozlikovski', 
+			'password' => 'sdfs5436',
+			'salt' => 'laksjf',
+			'name' => 'Mirko' 
+		]);*/
+	//->delete('users', array('id','=',1));
+	//->find(1, 'users');
+	//->get('id,name','users');
+	//->action('SELECT *', 'users', array('username', '=', 'perozdero'));
+	//->query('SELECT * FROM users WHERE username= ?', array('perozdero'));
 	echo '<pre>';
 	var_dump($db);
 	die();
