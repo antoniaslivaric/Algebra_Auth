@@ -1,11 +1,11 @@
 <?php
 
 	require_once 'core/init.php';
-	
-	$db = DB::getInstance()->update('users', 1, [
+
+/*	$db = DB::getInstance()->update('users', 1, [
 			'username' => 'mirkozlikovski', 
 			'name' => 'Mirko' 
-		]);
+		]);*/
 	
 	/*->insert('users', [
 			'username' => 'mirkozlikovski', 
@@ -18,10 +18,10 @@
 	//->get('id,name','users');
 	//->action('SELECT *', 'users', array('username', '=', 'perozdero'));
 	//->query('SELECT * FROM users WHERE username= ?', array('perozdero'));
-	echo '<pre>';
+/*	echo '<pre>';
 	var_dump($db);
 	die();
-	
+*/
 	Helper::getHeader('Algebra Auth', 'main-header');
 
 ?>
