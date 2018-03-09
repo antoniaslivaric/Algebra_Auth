@@ -169,6 +169,11 @@ class DB
 	{
 		return $this->count;
 	}
+	
+	public function first() 
+	{
+			return $this->results[0];
+	}
 }
 
 

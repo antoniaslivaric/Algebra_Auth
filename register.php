@@ -39,8 +39,7 @@
 			if($validation->getPassed()) {
 				$salt = Hash::salt(32);
 				$password = Hash::make(Input::get('password'),$salt);
-				var_dump($password);
-				die();
+				
 				
 				try{
 					$user->create(array(
@@ -51,13 +50,18 @@
 					));
 					
 				} catch(Exception $e) {
-					
+					Session::flash('danger', $e->getMessage());
+					Redirect::to('register');
+					exit;
 				}
+				Session::flash('success','You are registered sucessfully!');
+				Redirect::to('login');
 				
-				header('Location:Login.php');
 			}
 		}
 	}
+	
+	require_once 'notifications.php';
 ?>
     <div class="row">
 		<div class="col-xs-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">

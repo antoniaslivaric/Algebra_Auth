@@ -1,0 +1,57 @@
+diff --git a/classes/Session.php b/classes/Session.php
+index f805b35..11f1e39 100644
+--- a/classes/Session.php
++++ b/classes/Session.php
+@@ -29,4 +29,6 @@ class Session
+     {
+         unset($_SESSION[$key]);
+     }
+-}
++
++    //public static function flash($, $) {}
++}
+\ No newline at end of file
+diff --git a/classes/User.php b/classes/User.php
+index 74704e7..2036b94 100644
+--- a/classes/User.php
++++ b/classes/User.php
+@@ -2,7 +2,15 @@
+ 
+ class User
+ {
+-    public function create($user = array()) {
+-        DB::getInstance()->insert('users', $user);
++    private $db;
++
++    public function __construct() {
++        $this->db = DB::getInstance();
++    }
++
++    public function create($fields = array()) {
++        if (!$this->db->insert('users', $fields)) {
++            throw new Exception('There was problem creating an account.');
++        }
+     }
+ }
+diff --git a/register.php b/register.php
+index 3f72cd2..415dd28 100644
+--- a/register.php
++++ b/register.php
+@@ -44,12 +44,14 @@ if (Input::exists()) {
+                    'name' => Input::get('name')
+                ));
+ 
+-           } catch (Exception $ex) {
+-               // TODO: handle properly
+-               die($ex);
++           } catch (Exception $e) {
++               Session::flash('danger', $e->getMessage());
++               header('Location:register.php');
++               exit;
+            }
+ 
+            header('Location:login.php');
++           exit;
+        }
+     }
+ }

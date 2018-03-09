@@ -29,4 +29,9 @@ class Session
 		unset($_SESSION[$key]);
 	}
 	
+	public static function flash($key, $msg = '')
+	{
+		self::put($key, $msg);
+	}
+	
 }
